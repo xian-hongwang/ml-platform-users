@@ -1,0 +1,51 @@
+name: Render ML Workspace
+
+on:
+  push:
+    paths:
+      - "user/*.yaml"
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout users repo
+        uses: actions/checkout@v4
+
+      - name: Checkout infra repo
+        uses: actions/checkout@v4
+        with:
+          repository: xian-hongwang/ml-platform-infra
+          token: ${{ secrets.INFRA_REPO_TOKEN }}
+          path: infra
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install pyyaml
+
+      - name: Render users
+        run: |
+          for f in user/*.yaml; do
+            echo "Rendering $f"
+            python infra/scripts/render_user.py "$f"
+          done
+
+      - name: Commit rendered workspaces
+        run: |
+          cd infra
+          git config user.name "ml-platform-bot"
+          git config user.email "bot@larr1cent.com"
+
+          git add workspaces/
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+
+          git commit -m "auto: render workspace users"
+          git push

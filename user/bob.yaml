@@ -1,0 +1,8 @@
+user:
+  username: bob
+  email: bob@example.com
+
+workspace:
+  profile: small
+  cuda: cuda12.8
+  storage: 50Gi
