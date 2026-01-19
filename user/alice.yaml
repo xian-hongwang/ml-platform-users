@@ -1,9 +1,0 @@
-# users/alice.yaml
-user:
-  username: alice
-  email: alice@example.com
-
-workspace:
-  profile: medium
-  cuda: cuda12.9
-  storage: 100Gi
