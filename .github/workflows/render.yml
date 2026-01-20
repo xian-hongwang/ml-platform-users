@@ -62,19 +62,3 @@ jobs:
 
           git commit -m "auto: reconcile workspaces"
           git push
-
-      # ---------------------------
-      # Wait until READY + send email
-      # （⚠️ 一定要 cd infra）
-      # ---------------------------
-      - name: Wait and send ready emails
-        env:
-          SMTP_HOST: ${{ secrets.SMTP_HOST }}
-          SMTP_PORT: ${{ secrets.SMTP_PORT }}
-          SMTP_USER: ${{ secrets.SMTP_USER }}
-          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
-          SMTP_FROM: ${{ secrets.SMTP_FROM }}
-        run: |
-          set -e
-          cd infra
-          python scripts/notify_all.py
