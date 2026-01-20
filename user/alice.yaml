@@ -3,10 +3,10 @@ user:
   email: alice@example.com
 
 profile:
-  name: large        # small | medium | large
+  name: small        # small | medium | large
 
 cuda:
   version: cuda13.0
 
 storage:
-  size: 187Gi
+  size: 17Gi
