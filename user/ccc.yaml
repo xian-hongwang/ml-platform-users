@@ -1,0 +1,12 @@
+user:
+  username: ccc
+  email: ccc@example.com
+
+profile:
+  name: large        # small | medium | large
+
+cuda:
+  version: cuda13.0
+
+storage:
+  size: 127Gi
