@@ -1,0 +1,12 @@
+user:
+  username: larry
+  email: larryncent.14616@gmail.com
+
+profile:
+  name: small        # small | medium | large
+
+cuda:
+  version: cuda13.0
+
+storage:
+  size: 170Gi
