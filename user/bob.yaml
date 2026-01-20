@@ -1,0 +1,12 @@
+user:
+  username: blob
+  email: blob@example.com
+
+profile:
+  name: large        # small | medium | large
+
+cuda:
+  version: cuda13.0
+
+storage:
+  size: 187Gi
