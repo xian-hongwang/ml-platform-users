@@ -1,4 +1,4 @@
-name: Provision Workspace
+name: Render ML Workspace
 
 on:
   push:
@@ -7,8 +7,14 @@ on:
 
 jobs:
   render:
-    uses: xian-hongwang/ml-platform-infra/.github/workflows/render_and_commit.yaml@main
+    uses: xian-hongwang/ml-platform-infra/.github/workflows/render_and_notify.yaml@main
     with:
       user_dir: user
     secrets:
       INFRA_REPO_TOKEN: ${{ secrets.INFRA_REPO_TOKEN }}
+
+      SMTP_HOST: ${{ secrets.SMTP_HOST }}
+      SMTP_PORT: ${{ secrets.SMTP_PORT }}
+      SMTP_USER: ${{ secrets.SMTP_USER }}
+      SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+      SMTP_FROM: ${{ secrets.SMTP_FROM }}
