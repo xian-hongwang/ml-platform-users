@@ -8,10 +8,18 @@ on:
 jobs:
   render:
     runs-on: ubuntu-latest
+    timeout-minutes: 15   # 你說等 10 分鐘 OK，我給你 15
+
     steps:
+      # ---------------------------
+      # Checkout user repo
+      # ---------------------------
       - name: Checkout users repo
         uses: actions/checkout@v4
 
+      # ---------------------------
+      # Checkout infra repo
+      # ---------------------------
       - name: Checkout infra repo
         uses: actions/checkout@v4
         with:
@@ -19,6 +27,9 @@ jobs:
           token: ${{ secrets.INFRA_REPO_TOKEN }}
           path: infra
 
+      # ---------------------------
+      # Python
+      # ---------------------------
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
@@ -27,9 +38,15 @@ jobs:
       - name: Install dependencies
         run: pip install pyyaml
 
+      # ---------------------------
+      # Render users → infra repo
+      # ---------------------------
       - name: Render all users
         run: python infra/scripts/render_user.py
 
+      # ---------------------------
+      # Commit & push infra
+      # ---------------------------
       - name: Commit rendered workspaces
         run: |
           cd infra
@@ -37,6 +54,24 @@ jobs:
           git config user.email "bot@larr1cent.com"
 
           git add workspaces/ argocd/apps/
-          
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+
           git commit -m "auto: reconcile workspaces"
           git push
+
+      # ---------------------------
+      # Wait until READY + send email
+      # ---------------------------
+      - name: Wait and send ready emails
+        env:
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          SMTP_FROM: ${{ secrets.SMTP_FROM }}
+        run: |
+          set -e
+          python scripts/notify_all.py
