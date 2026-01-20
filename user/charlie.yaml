@@ -9,4 +9,4 @@ cuda:
   version: cuda13.0
 
 storage:
-  size: 100Gi
+  size: 110Gi
