@@ -7,14 +7,41 @@ on:
 
 jobs:
   render:
-    uses: xian-hongwang/ml-platform-infra/.github/workflows/render_and_notify.yaml@main
-    with:
-      user_dir: user
-    secrets:
-      INFRA_REPO_TOKEN: ${{ secrets.INFRA_REPO_TOKEN }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout users repo
+        uses: actions/checkout@v4
 
-      SMTP_HOST: ${{ secrets.SMTP_HOST }}
-      SMTP_PORT: ${{ secrets.SMTP_PORT }}
-      SMTP_USER: ${{ secrets.SMTP_USER }}
-      SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
-      SMTP_FROM: ${{ secrets.SMTP_FROM }}
+      - name: Checkout infra repo
+        uses: actions/checkout@v4
+        with:
+          repository: xian-hongwang/ml-platform-infra
+          token: ${{ secrets.INFRA_REPO_TOKEN }}
+          path: infra
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install pyyaml
+
+      - name: Render all users
+        run: python infra/scripts/render_user.py
+
+      - name: Commit rendered workspaces
+        run: |
+          cd infra
+          git config user.name "ml-platform-bot"
+          git config user.email "bot@larr1cent.com"
+
+          git add workspaces/ argocd/apps/
+
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+
+          git commit -m "auto: reconcile workspaces"
+          git push
