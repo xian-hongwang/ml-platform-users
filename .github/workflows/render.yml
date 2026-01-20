@@ -8,7 +8,7 @@ on:
 jobs:
   render:
     runs-on: ubuntu-latest
-    timeout-minutes: 15   # 你說等 10 分鐘 OK，我給你 15
+    timeout-minutes: 15   # 等到 READY + 拿到密碼為止
 
     steps:
       # ---------------------------
@@ -42,7 +42,8 @@ jobs:
       # Render users → infra repo
       # ---------------------------
       - name: Render all users
-        run: python infra/scripts/render_user.py
+        run: |
+          python infra/scripts/render_user.py
 
       # ---------------------------
       # Commit & push infra
@@ -64,6 +65,7 @@ jobs:
 
       # ---------------------------
       # Wait until READY + send email
+      # （⚠️ 一定要 cd infra）
       # ---------------------------
       - name: Wait and send ready emails
         env:
@@ -74,4 +76,5 @@ jobs:
           SMTP_FROM: ${{ secrets.SMTP_FROM }}
         run: |
           set -e
+          cd infra
           python scripts/notify_all.py
