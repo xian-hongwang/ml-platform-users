@@ -1,0 +1,12 @@
+user:
+  username: amy
+  email: larryncent.14616@gmail.com
+
+profile:
+  name: large        # small | medium | large
+
+cuda:
+  version: cuda12.9
+
+storage:
+  size: 170Gi
