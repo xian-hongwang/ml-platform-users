@@ -8,43 +8,72 @@ The goal is to make shared GPU computing **easy to use, hard to misuse**, and fu
 
 ---
 
-## More About This Project
+## Contents
 
-This project explores:
+- [Larr1 ML Computing Cluster (Experimental)](#larr1-ml-computing-cluster-experimental)
+  - [Contents](#contents)
+  - [What Is This](#what-is-this)
+  - [Architecture Overview](#architecture-overview)
+  - [Getting Started](#getting-started)
+    - [1 Fork the User Repository](#1-fork-the-user-repository)
+    - [2 Create Your Workspace YAML](#2-create-your-workspace-yaml)
+    - [3 Open a Pull Request](#3-open-a-pull-request)
+  - [Rules of the Game](#rules-of-the-game)
+  - [Experimental Status](#experimental-status)
+  - [Contact \& Feedback](#contact--feedback)
 
-- Running a real GPU **computing cluster** on Kubernetes
-- Managing ML workspaces via **GitOps (Argo CD + Helm)**
-- Providing per-user isolation without exposing infrastructure complexity
-- Operating shared GPU resources responsibly
+---
+
+## What Is This
+
+This project explores how to run a real GPU **computing cluster** using modern infrastructure tools while keeping the user experience intentionally simple.
+
+It focuses on:
+
+- Shared GPU computing on Kubernetes
+- GitOps-driven workflow (**Argo CD + Helm**)
+- Per-user isolation with minimal operational burden
+- Practical, opinionated trade-offs for a small experimental cluster
 
 The system is split into two repositories:
 
-- **Infrastructure repo**  
-  Handles Kubernetes, GPU scheduling, ingress, TLS, Argo CD, and Helm charts.
+- **Infrastructure repository**  
+  Manages Kubernetes, GPU scheduling, ingress, TLS, Argo CD, and Helm charts.
 
-- **User repo**  
-  Where users declare *what they want*, not *how things work*.
+- **User repository (this repo)**  
+  Where users declare *what they want*, not *how it works*.
 
-If you can write YAML and open a PR, you can use the cluster.
+If you can edit YAML and open a Pull Request, you can use the cluster.
+
+---
+
+## Architecture Overview
+
+Below is a high-level view of how the cluster works.
+
+![Larr1 ML Computing Cluster Architecture](./docs/architecture.png)
 
 ---
 
 ## Getting Started
 
-Using the cluster is intentionally simple.
-
-### 1 Clone the User Repository
-
-```bash
-git clone <user-repo-url>
-cd user-repo
-```
+Using the cluster follows a simple **fork → edit → pull request** workflow.
 
 ---
 
-### 2 Add Your Workspace YAML
+### 1 Fork the User Repository
 
-Create a YAML file under the `user/` directory.
+The `main` branch is protected.
+
+You **must fork** the repository before making changes.
+
+---
+
+### 2 Create Your Workspace YAML
+
+Create **one file** under the `user/` directory.
+
+> ⚠️ **The file extension must be `.yaml`**
 
 Example:
 
@@ -57,47 +86,30 @@ Example:
 # You only need to modify this file and open a PR.
 # The platform will take care of provisioning, networking,
 # GPU binding, and credentials automatically.
-
 user:
-  # your name
   username: aaa
-
-  # Email address to receive:
-  # - Workspace ready notification
   email: aaa@example.com
 
-
 profile:
-  # Resource profile of this workspace.
-  #
-  # Choose ONE of the following:
-  #
-  # small  → 1 GPU (16GB VRAM)
-  # medium → 1 GPU (24GB VRAM)
-  # large  → 1 GPU (32GB VRAM)
-  #
-  # CPU and memory are managed automatically by the platform.
-  # You only need to care about GPU memory size here.
-  name: medium        # small | medium | large
-
-
+# small  → 1 GPU (16GB VRAM)
+# medium → 1 GPU (24GB VRAM)
+# large  → 1 GPU (32GB VRAM)
+  name: medium
+# CUDA runtime version inside the container.
+#
+# Notes:
+# - The platform runs NVIDIA GPU drivers on the host with backward compatibility.
+# - This setting controls the user-space CUDA runtime and toolkit
+#   available inside the workspace container.
+# - It does NOT change the host GPU driver version.
+#
 cuda:
-  # CUDA runtime version inside the container.
-  #
-  # Notes:
-  # - The platform runs NVIDIA GPU drivers on the host with backward compatibility.
-  # - This setting controls the user-space CUDA runtime and toolkit
-  #   available inside the workspace container.
-  # - It does NOT change the host GPU driver version.
-  #
-  # Recommended:
-  # - cuda12.9 → default and most stable
-  # - cuda13.0 → newer features, experimental
-  version: cuda12.9   # cuda12.8 | cuda12.9 | cuda13.0
-
-
+# - cuda12.8 
+# - cuda12.9 
+# - cuda13.0 
+  version: cuda12.9
+# default 100Gi
 storage:
-  # default 
   size: 100Gi
 ```
 
@@ -105,54 +117,26 @@ storage:
 
 ### 3 Open a Pull Request
 
-- Commit your YAML
-- Open a PR
-- After approval, the cluster takes care of the rest
-
-Once ready, you’ll receive an email with:
-
-- Workspace URL
-- Username
-- Initial password
+After approval, credentials will be sent via email.
 
 ---
 
-## 🎮 Rules of the Game
+## Rules of the Game
 
 This is a **shared experimental computing cluster**.
 
-Please:
-
-- Use it for **ML training, experiments, and research**
-- Be mindful of GPU, CPU, and memory usage
-- Clean up resources you no longer need
-
-Please **do not**:
-
-- Run production services or public APIs
-- Bypass resource limits
-- Use the cluster as a general-purpose hosting platform
-
-If something breaks, it’s probably part of the experiment 🙂
+- ML training and experimentation only
+- No production services
+- Respect shared resources
 
 ---
 
 ## Experimental Status
 
-This cluster is **actively evolving**.
-
-- Features may change
-- Tooling is still being improved
-- Some rough edges are expected
-
-Feedback is very welcome.
+This cluster is **experimental**.
 
 ---
 
 ## Contact & Feedback
 
-If you hit issues, have suggestions, or just want to give feedback:
-
 📧 **xhw.14616@gmail.com**
-
-Please include your workspace name if applicable.
