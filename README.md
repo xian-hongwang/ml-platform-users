@@ -118,7 +118,8 @@ storage:
 
 ### 3 Open a Pull Request
 
-After approval, credentials will be sent via email.
+If you would like to use the GPU resources, please open a Pull Request and briefly describe your use case and why you need the resources.
+After review and approval, access credentials will be sent via email.
 
 ---
 
