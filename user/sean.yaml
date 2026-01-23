@@ -1,0 +1,12 @@
+user:
+  username: Sean
+  email: m31527@gmail.com
+
+profile:
+  name: medium      # small | medium | large
+
+cuda:
+  version: cuda12.9
+
+storage:
+  size: 170Gi
