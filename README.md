@@ -10,7 +10,7 @@ The goal is to make shared GPU computing **easy to use, hard to misuse**, and fu
 
 ## Contents
 
-- [Larr1 ML Computing Cluster (Experimental)](#larr1-ml-computing-cluster-experimental)
+- [ML Computing Cluster (Experimental)](#ml-computing-cluster-experimental)
   - [Contents](#contents)
   - [What Is This](#what-is-this)
   - [Architecture Overview](#architecture-overview)
@@ -118,7 +118,7 @@ storage:
 
 ### 3 Open a Pull Request
 
-If you would like to use the GPU resources, please open a Pull Request and briefly describe your use case and why you need the resources.
+Please open a Pull Request and briefly describe your use case and why you need the resources.
 After review and approval, access credentials will be sent via email.
 
 ---
