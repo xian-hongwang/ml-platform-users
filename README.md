@@ -18,6 +18,7 @@ The goal is to make shared GPU computing **easy to use, hard to misuse**, and fu
     - [1 Fork the User Repository](#1-fork-the-user-repository)
     - [2 Create Your Workspace YAML](#2-create-your-workspace-yaml)
     - [3 Open a Pull Request](#3-open-a-pull-request)
+  - [Monitoring](#monitoring)
   - [Rules of the Game](#rules-of-the-game)
   - [Experimental Status](#experimental-status)
   - [Contact \& Feedback](#contact--feedback)
@@ -120,6 +121,11 @@ storage:
 After approval, credentials will be sent via email.
 
 ---
+
+## Monitoring
+
+![Argocd screenshot 1](./docs/argocd_screenshot1.png)
+![Argocd screenshot 2](./docs/argocd_screenshot2.png)
 
 ## Rules of the Game
 
