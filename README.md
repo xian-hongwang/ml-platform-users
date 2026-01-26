@@ -6,6 +6,8 @@ It runs on a **two-node NVIDIA DGX Spark cluster** and provides isolated, HTTPS-
 
 The goal is to make shared GPU computing **easy to use, hard to misuse**, and fun to build.
 
+![example](./docs/1.png)
+
 ---
 
 ## Contents
