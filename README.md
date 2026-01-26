@@ -6,7 +6,7 @@ It runs on a **two-node NVIDIA DGX Spark cluster** and provides isolated, HTTPS-
 
 The goal is to make shared GPU computing **easy to use, hard to misuse**, and fun to build.
 
-![example](./docs/1.png)
+![example](./docs/images/1.png)
 
 ---
 
@@ -54,7 +54,7 @@ If you can edit YAML and open a Pull Request, you can use the cluster.
 
 Below is a high-level view of how the cluster works.
 
-![Larr1 ML Computing Cluster Architecture](./docs/architecture.png)
+![Larr1 ML Computing Cluster Architecture](./docs/images/architecture.png)
 
 ---
 
@@ -127,8 +127,8 @@ After review and approval, access credentials will be sent via email.
 
 ## Monitoring
 
-![Argocd screenshot 1](./docs/argocd_screenshot1.png)
-![Argocd screenshot 2](./docs/argocd_screenshot2.png)
+![Argocd screenshot 1](./docs/images/argocd_screenshot1.png)
+![Argocd screenshot 2](./docs/images/argocd_screenshot2.png)
 
 ## Rules of the Game
 
