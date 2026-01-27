@@ -1,0 +1,12 @@
+user:
+  username: lana
+  email: lana690543@gmail.com
+
+profile:
+  name: small      # small | medium | large
+
+cuda:
+  version: cuda12.8
+
+storage:
+  size: 170Gi
