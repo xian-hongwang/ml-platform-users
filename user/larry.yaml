@@ -1,0 +1,32 @@
+# user/aaa.yaml
+#
+# This file defines a personal workspace on
+# Larr1 ML Computing Platform (Experimental).
+#
+# You only need to modify this file and open a PR.
+# The platform will take care of provisioning, networking,
+# GPU binding, and credentials automatically.
+user:
+  username: aaa
+  email: aaa@example.com
+
+profile:
+# small  → 1 GPU (16GB VRAM)
+# medium → 1 GPU (24GB VRAM)
+# large  → 1 GPU (32GB VRAM)
+  name: small
+# CUDA runtime version inside the container.
+#
+# Notes:
+# - The platform runs NVIDIA GPU drivers on the host with backward compatibility.
+# - This setting controls the user-space CUDA runtime and toolkit
+#   available inside the workspace container.
+# - It does NOT change the host GPU driver version.
+#
+cuda:
+# - cuda12.8 
+# - cuda13.0 
+  version: cuda13.0
+# default 100Gi
+storage:
+  size: 100Gi
