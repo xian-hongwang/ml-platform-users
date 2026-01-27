@@ -108,9 +108,8 @@ profile:
 #
 cuda:
 # - cuda12.8 
-# - cuda12.9 
 # - cuda13.0 
-  version: cuda12.9
+  version: cuda13.0
 # default 100Gi
 storage:
   size: 100Gi
