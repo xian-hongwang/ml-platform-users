@@ -6,7 +6,7 @@ profile:
   name: small      # small | medium | large
 
 cuda:
-  version: cuda12.9
+  version: cuda12.8
 
 storage:
   size: 170Gi
