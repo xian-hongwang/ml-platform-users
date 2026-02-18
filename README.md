@@ -1,4 +1,4 @@
-# ML Computing Cluster (Experimental)
+# ML Computing Cluster
 
 Larr1 ML Computing Cluster is an **experimental, self-managed GPU computing cluster** built as a side project to support machine learning training and experimentation.
 
@@ -20,7 +20,7 @@ The goal is to make shared GPU computing **easy to use, hard to misuse**, and fu
 
 ## Contents
 
-- [ML Computing Cluster (Experimental)](#ml-computing-cluster-experimental)
+- [ML Computing Cluster](#ml-computing-cluster)
   - [Contents](#contents)
   - [What Is This](#what-is-this)
   - [Architecture Overview](#architecture-overview)
