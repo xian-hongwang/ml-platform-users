@@ -4,16 +4,15 @@ Larr1 ML Computing Cluster is an **experimental, self-managed GPU computing clus
 
 It currently runs on a **three-node NVIDIA DGX** Spark cluster and provides isolated, HTTPS-accessible workspaces through a simple Git-based workflow.
 
-<figure style="text-align:center">
-  <img src="./docs/images/nodes.png" alt="kubectl get nodes output" />
-  <figcaption>Snapshot of the active cluster nodes.</figcaption>
-</figure>
+![kubectl get nodes output](./docs/images/nodes.png)
+
+*Snapshot of the active cluster nodes.*
 
 The goal is to make shared GPU computing **easy to use, hard to misuse**, and fun to build.
 
 <figure style="text-align:center">
-  <img src="./docs/images/lana_ex_1.jpg" alt="User workspace example 1" width="45%" />
-  <img src="./docs/images/lana_ex_2.jpg" alt="User workspace example 2" width="45%" />
+  <img src="./docs/images/lana_ex_1.jpg" alt="User workspace example 1" width="38%" />
+  <img src="./docs/images/lana_ex_2.jpg" alt="User workspace example 2" width="38%" />
   <figcaption>Live screenshots from a user training a model, including a Gradio-generated UI sample.</figcaption>
 </figure>
 
@@ -156,4 +155,4 @@ This cluster is **experimental**.
 
 ## Contact & Feedback
 
-📧 **xhw.14616@gmail.com**
+📧 **<xhw.14616@gmail.com>**
